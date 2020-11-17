@@ -11,21 +11,31 @@ const fs = __webpack_require__(747);
 
 try {
 
+  // Our github context
+  const payload = JSON.stringify(github.context.payload, undefined, 2);
+
+  // Get commit id and timestamp
+  const commitId = payload.commits[0].id;
+  const date = payload.commits[0].timestamp;
+
+  // Load JSON
   let input = core.getInput('json');
+  let rawdata = fs.readFileSync(input);
+  let object = JSON.parse(rawdata);
 
-  console.log('The input file selected: ' + input);
+  // Print loaded object
+  console.log('Loaded object is: ' + object);
 
-  console.log('Changing file input to ' + input + '.modified');
+  // Add our data
+  object.commitId=commitId;
+  object.date=date;
 
-  input = input + '.modified';
+  // Write it and set the output
+  fs.writeFileSync(input,object);
+  core.setOutput('json', object);
 
-  console.log('Setting output...')
-
-  core.setOutput('json', input);
-
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  // Print it to console for good measure
+  console.log('New object is: ' + object);
 
 } catch (error) {
   core.setFailed(error.message);
