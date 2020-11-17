@@ -15,13 +15,21 @@ try {
   let input = core.getInput('json');
   let rawdata = fs.readFileSync(input);
   let object = JSON.parse(rawdata);
-
+  
   // Print loaded object
   console.log('Loaded object is: ' + JSON.stringify(object,undefined,2));
 
-  // Add our data
-  object.commitId=commitId;
-  object.date=date;
+  // If object is an array, we affect every object inside the array, if not, just the one
+  if (Array.isArray(object)){
+    for (const element of object) {
+      element.commitId = commitId;
+      element.date = date;
+    }
+  } else {
+    object.commitId=commitId;
+    object.date=date;
+  }
+
 
   // Write it and set the output
   fs.writeFileSync(input,object);
