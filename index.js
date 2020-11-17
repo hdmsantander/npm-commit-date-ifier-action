@@ -7,6 +7,8 @@ try {
   // Our github context
   const payload = JSON.stringify(github.context.payload, undefined, 2);
 
+  console.log(payload);
+
   // Get commit id and timestamp
   const commitId = payload.commits[0].id;
   const date = payload.commits[0].timestamp;
