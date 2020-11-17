@@ -1,8 +1,8 @@
-name: "Npm commit date ifier action"
-description: "Add commit and date as atributes to a JSON"
+name: "JSON file reader and modifier"
+description: "Update a JSON file to add commit and date as atributes to it."
 inputs:
   json:
-    description: "JSON to commit date ify"
+    description: "JSON to commit/date ify"
     required: true
 outputs:
   json:
