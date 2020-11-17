@@ -22,9 +22,6 @@ try {
   let input = core.getInput('json');
   let rawdata = fs.readFileSync(input);
   let object = JSON.parse(rawdata);
-  
-  // Print loaded object
-  console.log('Loaded object is: ' + JSON.stringify(object,undefined,2));
 
   // If object is an array, we affect every object inside the array, if not, just the one
   if (Array.isArray(object)){
@@ -37,13 +34,12 @@ try {
     object.date=date;
   }
 
+  // Stringify our output
+  const result = JSON.stringify(object);
 
   // Write it and set the output
-  fs.writeFileSync(input,object);
-  core.setOutput('json', object);
-
-  // Print it to console for good measure
-  console.log('New object is: ' + JSON.stringify(object,undefined,2));
+  fs.writeFileSync(input,result);
+  core.setOutput('json',result);
 
 } catch (error) {
   core.setFailed(error.message);
