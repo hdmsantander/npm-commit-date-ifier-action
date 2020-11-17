@@ -24,7 +24,7 @@ try {
   let object = JSON.parse(rawdata);
 
   // Print loaded object
-  console.log('Loaded object is: ' + object);
+  console.log('Loaded object is: ' + JSON.stringify(object,undefined,2));
 
   // Add our data
   object.commitId=commitId;
@@ -35,7 +35,7 @@ try {
   core.setOutput('json', object);
 
   // Print it to console for good measure
-  console.log('New object is: ' + object);
+  console.log('New object is: ' + JSON.stringify(object,undefined,2));
 
 } catch (error) {
   core.setFailed(error.message);
