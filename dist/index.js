@@ -12,13 +12,11 @@ const fs = __webpack_require__(747);
 try {
 
   // Our github context
-  const payload = JSON.stringify(github.context.payload, undefined, 2).commits;
-
-  console.log(payload);
+  const payload = github.context.payload;
 
   // Get commit id and timestamp
-  const commitId = payload[0].id
-  const date = payload[0].timestamp;
+  const commitId = payload.commits[0].id
+  const date = payload.commits[0].timestamp;
 
   // Load JSON
   let input = core.getInput('json');
