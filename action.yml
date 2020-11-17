@@ -1,0 +1,12 @@
+name: "Npm commit date ifier action"
+description: "Add commit and date as atributes to a JSON"
+inputs:
+  json:
+    description: "JSON to commit date ify"
+    required: true
+outputs:
+  json:
+    description: "The JSON that was commit/date ified"
+runs:
+  using: "node12"
+  main: "dist/index.js"
