@@ -2,6 +2,12 @@
 
 This action uses NPM as an action to add the commit id and the date of the commit to an object parsed from a JSON file. Updating the original file.
 
+The project is compiled using **ncc**.
+
+```
+ncc build index.js --license licenses.txt
+```
+
 ## Inputs
 
 ### `json`
