@@ -44,6 +44,13 @@ _pet.json_
 }
 ```
 
+The output can be used from the same JSON file or as output from the step in the following steps within the same job:
+
+```
+- name: Echo output
+  run: echo "The result of the JSON transformation was ${{ steps.transform-json.outputs.json }}"
+```
+
 ## Example usage of action
 
 _.github/workflows/main.yml_
